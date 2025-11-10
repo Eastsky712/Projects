@@ -41,6 +41,7 @@ class AlienInvasion:
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
+        self.popups = pygame.sprite.Group()
         #self.quokka = Quokka(self)
 
         self._create_fleet()
@@ -154,6 +155,14 @@ class AlienInvasion:
         #   If so, get rid of the bullet and the alien.
         collisions = pygame.sprite.groupcollide(
             self.bullets, self.aliens, True, True)
+        
+        for bullet, hit_list in collisions.items():
+            for enemy in hit_list:
+                overlap_rect = bullet.rect.clip(enemy.rect)
+
+                hit_x, hit_y = overlap_rect.center
+
+                points_popup_group.add(PointsPopup(hit_x, hit_y, self.settings.alien_points))
 
         if collisions:
             for aliens in collisions.values():

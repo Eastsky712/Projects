@@ -1,0 +1,9 @@
+The current game plan
+Additions
+- text that pops up when you kill an enemy
+- diverse enemy types
+- different enemy movement
+- enemies shoot bullets towards ship
+- power ups for ship (aoe, increase max bullets, increase amount of bullets, etc.)
+- boss battle every _ level
+- maybe a shop at the end of the game to make you a little stronger next time

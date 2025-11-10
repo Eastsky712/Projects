@@ -96,6 +96,8 @@ class Scoreboard:
             ship.rect.y = 10
             self.ships.add(ship)
 
+
+    
     def show_score(self):
         """Draw scores, level, and ships to the screen."""
         self.screen.blit(self.score_image,self.score_rect)
@@ -110,3 +112,18 @@ class Scoreboard:
                 self.screen.blit(self.flash_image, self.flash_rect)
             else:
                 self.showing_level_up = False
+    def add_popup(self, x, y, points):
+        popup = ScorePopup(x, y, points, self.font)
+        self.popups.add(popup)
+class ScorePopup(pygame.sprite.Sprite):
+    def __init__(self, x, y, points, font):
+        super().__init__()
+        self.image = font.render(f"+{points}", True, (255, 215, 0))
+        self.rect = self.image.get_rect(center=(x,y))
+        self.timer = 60
+
+    def update(self):
+        self.rect.y -= 1
+        self.timer -= 1
+        if self.timer <= 0:
+            self.kill()

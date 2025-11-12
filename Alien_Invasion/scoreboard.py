@@ -16,6 +16,9 @@ class Scoreboard:
         self.stats = ai_game.stats
         self.filename = ai_game.filename
 
+        self.popups = pygame.sprite.Group()
+        self.explosions = pygame.sprite.Group()
+
         #Fonts settings for scoring information
         self.text_color = (30, 30, 30)
         self.font = pygame.font.SysFont(None, 48)
@@ -112,18 +115,43 @@ class Scoreboard:
                 self.screen.blit(self.flash_image, self.flash_rect)
             else:
                 self.showing_level_up = False
-    def add_popup(self, x, y, points):
-        popup = ScorePopup(x, y, points, self.font)
+    
+    def add_popup(self, x, y, points, is_shooter):
+        popup = ScorePopup(x, y, points, self.font, is_shooter)
         self.popups.add(popup)
+
+    def add_explosion(self, x, y):
+        explosion = Explosion(x, y)
+        self.explosions.add(explosion)
+
 class ScorePopup(pygame.sprite.Sprite):
-    def __init__(self, x, y, points, font):
+    def __init__(self, x, y, points, font, is_shooter=False):
         super().__init__()
-        self.image = font.render(f"+{points}", True, (255, 215, 0))
+        self.image = font.render(f"+{points}", True, (255, 128, 0) if is_shooter else (255, 215, 0))
         self.rect = self.image.get_rect(center=(x,y))
         self.timer = 60
 
     def update(self):
         self.rect.y -= 1
         self.timer -= 1
+        if self.timer <= 0:
+            self.kill()
+
+class Explosion(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        super().__init__()
+        self.image = pygame.image.load('Alien_Invasion/images/explosion.png')
+        self.image = pygame.transform.scale(self.image, (30,30)).convert_alpha()
+        self.rect = self.image.get_rect()
+        self.transparency = 120
+        self.image.set_alpha(self.transparency)
+        self.rect.x = x - 20
+        self.rect.y = y - 30
+        self.timer = 30
+    
+    def update(self):
+        self.timer -= 1
+        self.transparency -= 4
+        self.image.set_alpha(self.transparency)
         if self.timer <= 0:
             self.kill()

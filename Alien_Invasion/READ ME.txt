@@ -1,6 +1,6 @@
 The current game plan
 Additions
-- text that pops up when you kill an enemy
+- text that pops up when you kill an enemy (cheated but done)
 - diverse enemy types
 - different enemy movement
 - enemies shoot bullets towards ship

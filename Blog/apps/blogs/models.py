@@ -1,17 +1,18 @@
 from django.db import models
 
-class BlogTitle(models.Model):
-    """A title the user wants there blog to be about"""
-    title = models.CharField(max_length=50)
-    date_added = models.DateTimeField(auto_now_add=True)
+class Topic(models.Model):
+    """A Topic the user wants there post to be about"""
+    text = models.CharField(max_length=50)
 
     def __str__(self):
         """Return a string represetation of the model."""
-        return self.title
+        return self.text
     
-class BlogPost(models.Model):
-    """A blog post of the title"""
-    title = models.ForeignKey(BlogTitle, on_delete=models.CASCADE)
+class Post(models.Model):
+    """A blog post of the choosen topic"""
+    topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
+    title = models.CharField(max_length=50)
+    author = models.CharField(max_length=20)
     text = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
 
@@ -20,4 +21,4 @@ class BlogPost(models.Model):
 
     def __str__(self):
         """Return a string representation of the model"""
-        return f"{self.post[:50]}..."
+        return f"{self.subject}"

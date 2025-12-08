@@ -1,0 +1,25 @@
+{% extends 'blogs/base.html' %}
+
+{% block content %}
+
+    <p>Topic: {{ topic }}</p>
+    <p>
+        <a href="{% url 'blogs:new_post' topic.id}">Add new post</a>
+    </p>
+
+    <ul>
+    {% for post in posts %}
+        <li>
+            <p><strong>Title: </strong>{{ post.title }}</p>
+            <p><strong>Author: </strong>{{ post.author }}</p>
+            <p>{{ post.text|truncatewords:50|linebreaks }}</p>
+            <p>
+                <a href="{% url 'blogs:edit_post' post.id %}">Edit post</a>
+            </p>
+        </li>
+    {% empty %}
+        <li>There are no text for this topic yet</li>
+    {% endfor %}
+    </ul>
+
+{% endblock content %}

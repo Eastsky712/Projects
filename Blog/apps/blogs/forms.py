@@ -1,16 +1,16 @@
 from django import forms
 
-from .models import BlogTitle, BlogPost
+from .models import Topic, Post
 
-class TitleForm(forms.ModelForm):
+class TopicForm(forms.ModelForm):
     class Meta:
-        model = BlogTitle
-        fields = ['title']
-        labels = {'title': ''}
+        model = Topic
+        fields = ['text']
+        labels = {'text': ''}
 
 class PostForm(forms.ModelForm):
     class Meta:
-        model = BlogPost
-        fields = ['post']
-        labels = {'post':''}
-        widgets = {'post': forms.Textarea(attrs={'cols': 80})}
+        model = Post
+        fields = ['text']
+        labels = {'text':''}
+        widgets = {'text': forms.Textarea(attrs={'cols': 80})}

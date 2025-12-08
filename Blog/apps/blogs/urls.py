@@ -6,9 +6,13 @@ urlpatterns = [
     # Home Page
     path('', views.index, name='index'),
     # Page which shows all Blog Posts
-    path('titles/', views.titles, name='titles'),
+    path('topics/', views.topics, name='topics'),
     # Page which shows one Blog Post
-    path('titles/<int:post_id>/', views.title, name='title'),
-    # Page which makes a new post
-    path('new_post/', views.new_post, name='new_post'),
+    path('topics/<int:topic_id>/', views.topic, name='topic'),
+    # Page which makes a new post topic
+    path('new_topic/', views.new_topic, name='new_topic'),
+    # Page which makes a new post comment
+    path('new_post/<int:post_id>/', views.new_post, name='new_post'),
+    # Page where you can edit a existing post
+    path('edit_post/<int:post_id>/', views.edit_post, name='edit_post'),
 ]

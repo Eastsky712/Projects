@@ -10,7 +10,11 @@
     <form action="{% url 'blogs:edit_post' post.id %}" method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button name="submit">Save changes</button>
+        <button name="submit" display: inline-block>Save changes</button>
+    </form>
+    <form action="{% url 'blogs:delete_post' post.id %}" method="post">
+        {% csrf_token %}
+        <button name="submit" display: inline-block>Delete post</button>
     </form>
 
 {% endblock content %}

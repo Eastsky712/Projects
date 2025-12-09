@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <p>Blogs</p>
+    <p>Blog Topics</p>
 
     <ul>
         {% for topic in topics %}
@@ -14,6 +14,6 @@
         {% endfor %}
     </ul>
 
-    <a href="{% url 'blogs:new_topic' %}">Add a new post</a>
+    <a href="{% url 'blogs:new_topic' %}">Add a new topic</a>
 
 {% endblock content %}

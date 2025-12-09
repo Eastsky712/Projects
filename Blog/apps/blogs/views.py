@@ -34,7 +34,7 @@ def new_post(request, topic_id):
             new_post = form.save(commit=False)
             new_post.topic = topic
             new_post.save()
-            return redirect('blogs:topic', topics_id=topic_id)
+            return redirect('blogs:topic', topic_id=topic_id)
     
     # Display a blank or invalid form.
     context = {'topic': topic, 'form': form}
@@ -57,9 +57,10 @@ def new_topic(request):
     return render(request, 'blogs/new_topic.html', context)
 
 def edit_post(request, post_id):
-    """Edit a existin post"""
+    """Edit a existing post"""
     post = Post.objects.get(id=post_id)
     topic = post.topic
+    author = post.author
 
     if request.method != 'POST':
         # Initial request; pre-fill form with the current entry.
@@ -73,3 +74,11 @@ def edit_post(request, post_id):
     
     context = {'post': post, 'topic': topic, 'form': form}
     return render(request, 'blogs/edit_post.html', context)
+
+def delete_post(request, post_id):
+    """Delete a existing post"""
+    post = Post.objects.get(id=post_id)
+
+
+    context = {'post': post} 
+    render(request, 'blogs/delete_post.html', context)

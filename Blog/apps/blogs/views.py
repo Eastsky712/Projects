@@ -75,10 +75,10 @@ def edit_post(request, post_id):
     context = {'post': post, 'topic': topic, 'form': form}
     return render(request, 'blogs/edit_post.html', context)
 
-def delete_post(request, post_id):
+def delete_post(request, post_id, topic_id):
     """Delete a existing post"""
     post = Post.objects.get(id=post_id)
+    topic = Topic.objects.get(id=topic_id)
 
-
-    context = {'post': post} 
-    render(request, 'blogs/delete_post.html', context)
+    context = {'post': post, 'topic': topic} 
+    return render(request, 'blogs/delete_post.html', context)

@@ -1,8 +1,11 @@
-{% extends "blogs/base.html" %}
-
 {% block content %}
 
     <p>Are you sure you would like to delete this post?</p>
 
+    <p>
+        <button name="submit">Yes</button>
+
+        <a href="{% url 'blogs:topic' topic.id %}" class="button">No</a>
+    </p>
 
 {% endblock content %}

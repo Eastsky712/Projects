@@ -13,4 +13,9 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ['title','author','text']
         labels = {'text':''}
-        widgets = {'text': forms.Textarea(attrs={'cols': 80})}
+        widgets = {
+            'text': forms.Textarea(attrs={'cols': 80, 'form': 'edit-form'}), 
+            'author': forms.TextInput(attrs={'form': 'edit-form'}), 
+            'title': forms.TextInput(attrs={'form': 'edit-form'}) 
+            }
+

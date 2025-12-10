@@ -6,15 +6,16 @@
     <p><a href="{% url 'blogs:topic' topic.id %}">{{ topic }}</a></p>
 
     <p>Edit entry:</p>
-
-    <form action="{% url 'blogs:edit_post' post.id %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <form action="{% url 'blogs:edit_post' post.id %}" method="post" id="edit-form" style="display:inline-block">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button name="submit" display: inline-block>Save changes</button>
+        <button name="submit">Save changes</button>
     </form>
-    <form action="{% url 'blogs:delete_post' post.id %}" method="post">
+    <form action="{% url 'blogs:delete_post' post.id %}" method="post" style="display:inline-block">
         {% csrf_token %}
-        <button name="submit" display: inline-block>Delete post</button>
+        <input type="hidden" name="next_topic_id" value="{% topic.id %}">
+        <button name="submit">Delete post</button>
     </form>
 
 {% endblock content %}

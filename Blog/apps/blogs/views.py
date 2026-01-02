@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 
 from .models import Topic, Post
 from .forms import TopicForm, PostForm
@@ -7,6 +8,7 @@ def index(request):
     """The Home Page for Blogs"""
     return render(request, 'blogs/index.html')
 
+@login_required
 def topics(request):
     """The Blog Posts Page"""
     topics = Topic.objects.order_by('text')

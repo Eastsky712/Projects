@@ -45,25 +45,14 @@
                 </ul>
             </div>
         </nav>
+
+        <main role="main" class="container">
+            <div class="pb-2 mb-2 border-bottom">
+                {% block page_header %}{% endblock page_header %}
+            </div>
+            <div>
+                {% block content %}{% endblock content %}
+            </div>
+        </main>
     </body>
 </html>
-
-<p>
-    <a href="{% url 'learning_logs:index' %}">Learning Log</a> - 
-    <a href="{% url 'learning_logs:topics' %}">Topics</a> -
-    {% if user.is_authenticated %}
-        Hello, {{ user.username }}.
-        <form method="post" action="{% url 'users:logout' %}">
-            {% csrf_token %}
-
-            <button name="submit">Log out</button>
-            <input type="hidden" name="next"
-            value="{% url 'users:logout' %}" />
-        </form>
-    {% else %}
-        <a href="{% url 'users:register' %}">Register</a> -
-        <a href="{% url 'users:login' %}">Log in</a>
-    {% endif %}
-</p>
-
-{% block content %}{% endblock content %}

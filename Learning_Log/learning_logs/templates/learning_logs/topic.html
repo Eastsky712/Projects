@@ -6,14 +6,9 @@
 
 {% block content %}
 
-    <p>Topic: {{ topic }}</p>
+    <p><h4>Entries:</h4></p>
+    
 
-    <p>Entries:</p>
-    <p>
-        <a href="{% url 'learning_logs:new_entry' topic.id %}">Add new entry</a>
-    </p>
-
-    <ul>
     {% for entry in entries %}
         <div class="card mb-3">
             <h4 class="card-header">
@@ -29,6 +24,7 @@
     {% empty %}
         <p>There are no entires for this topic yet.</p>
     {% endfor %}
-    </ul>
-
+    <p>
+        <a href="{% url 'learning_logs:new_entry' topic.id %}" class="btn btn-primary">Add new entry</a>
+    </p>
 {% endblock content %}

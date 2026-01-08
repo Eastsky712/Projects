@@ -9,7 +9,8 @@
             about a topic, make an entry summarzing what you've learned.</p>
         
         {% if user.is_authenticated %}
-
+            <a class="btn btn-lg btn-primary" href="{% url 'learning_logs:topics' %}"
+                role="button">Topics &raquo;</a>
         {% else %}
             <a class="btn btn-lg btn-primary" href="{% url 'users:register' %}"
                 role="button">Register &raquo;</a>
